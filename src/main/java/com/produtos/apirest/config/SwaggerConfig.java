@@ -35,7 +35,7 @@ public class SwaggerConfig {
                 "Produtos API REST",
                 "API REST de cadastro de produtos.",
                 "1.0",
-                "Terms of Service",
+                "Terms of ProdutoService",
                 new Contact("Guns N' Roses", "https://youtu.be/8SbUC-UaAxE",
                         "Silvamsamuel15@gmail.com"),
                 "Apache License Version 2.0",
