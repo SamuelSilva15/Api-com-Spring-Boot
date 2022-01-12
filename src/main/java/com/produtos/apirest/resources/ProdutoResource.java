@@ -23,7 +23,7 @@ import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping(value="/api")
+@RequestMapping(value="/api/produtos")
 @Api(value="API REST Produtos")
 public class ProdutoResource {
 	
@@ -31,31 +31,31 @@ public class ProdutoResource {
 	ProdutoRepository produtoRepository;
 	
 	@ApiOperation(value="Retorna uma lista de Produtos")
-	@GetMapping("/produtos")
+	@GetMapping
 	public List<Produto> listaProdutos(){
 		return produtoRepository.findAll();
 	}
 	
 	@ApiOperation(value="Retorna um produto unico")
-	@GetMapping("/produto/{id}")
-	public Produto listaProdutoUnico(@PathVariable(value="id") long id){
+	@GetMapping("/{id}")
+	public Produto listaProdutoUnico(@PathVariable long id){
 		return produtoRepository.findById(id);
 	}
 	
 	@ApiOperation(value="Salva um produto")
-	@PostMapping("/produto")
+	@PostMapping
 	public Produto salvaProduto(@RequestBody @Valid Produto produto) {
 		return produtoRepository.save(produto);
 	}
 	
 	@ApiOperation(value="Deleta um produto")
-	@DeleteMapping("/produto")
+	@DeleteMapping
 	public void deletaProduto(@RequestBody @Valid Produto produto) {
 		produtoRepository.delete(produto);
 	}
 	
 	@ApiOperation(value="Atualiza um produto")
-	@PutMapping("/produto")
+	@PutMapping
 	public Produto atualizaProduto(@RequestBody @Valid Produto produto) {
 		return produtoRepository.save(produto);
 	}
