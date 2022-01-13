@@ -25,24 +25,8 @@ public class SwaggerConfig {
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.produtos.apirest"))
                 .paths(regex("/api.*"))
-                .build()
-                .apiInfo(metaInfo());
+                .build();
     }
 
-    private ApiInfo metaInfo() {
-
-        ApiInfo apiInfo = new ApiInfo(
-                "Produtos API REST",
-                "API REST de cadastro de produtos.",
-                "1.0",
-                "Terms of ProdutoService",
-                new Contact("Guns N' Roses", "https://youtu.be/8SbUC-UaAxE",
-                        "Silvamsamuel15@gmail.com"),
-                "Apache License Version 2.0",
-                "https://www.apache.org/licesen.html", new ArrayList<VendorExtension>()
-        );
-
-        return apiInfo;
-    }
 
 }
