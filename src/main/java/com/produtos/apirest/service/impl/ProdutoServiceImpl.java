@@ -4,10 +4,7 @@ import com.produtos.apirest.model.Produto;
 import com.produtos.apirest.repository.ProdutoRepository;
 import com.produtos.apirest.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.ExampleMatcher;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -27,14 +24,13 @@ public class ProdutoServiceImpl implements ProdutoService {
     }
 
     @Override
-    public List<Produto> findAll(int page, int size, String nome, BigDecimal quantidade) {
+    public Page<Produto> findAll(int page, int size, String nome, BigDecimal quantidade) {
         Produto produto = new Produto();
         produto.setNome(nome);
         produto.setQuantidade(quantidade);
 
         return produtoRepository
-                .findAll(Example.of(produto, exampleMatcher()), PageRequest.of(page, size, Sort.by("id")))
-                .getContent();
+                .findAll(Example.of(produto, exampleMatcher()), PageRequest.of(page, size, Sort.by("id")));
     }
 
     @Override

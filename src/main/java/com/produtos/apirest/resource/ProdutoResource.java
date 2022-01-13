@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import com.produtos.apirest.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
 import com.produtos.apirest.model.Produto;
@@ -31,9 +32,10 @@ public class ProdutoResource {
 	
 	@ApiOperation(value="Retorna uma lista de produtos com paginação")
 	@GetMapping
-	public List<Produto> findAll(@RequestParam(required = false, defaultValue = "0") int page,
-								 @RequestParam(required = false, defaultValue = Integer.MAX_VALUE + "") int size,
-								 @RequestParam(required = false) String nome, @RequestParam(required = false) BigDecimal quantidade){
+	public Page<Produto> findAll(@RequestParam(required = false, defaultValue = "0") int page,
+								 @RequestParam(required = false, defaultValue = Integer.MAX_VALUE + "")	int size,
+								 @RequestParam(required = false) String nome,
+								 @RequestParam(required = false) BigDecimal quantidade){
 		return produtoService.findAll(page, size, nome, quantidade);
 	}
 
