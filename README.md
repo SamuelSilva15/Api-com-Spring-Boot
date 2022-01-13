@@ -21,6 +21,11 @@ Projeto de API com Spring Boot com
 
 ## Começando
 
+### Credências
+
+* Username: john123
+* Password: novasenha
+
 ### Documentação
 
 https://quiet-springs-84556.herokuapp.com/swagger-ui.html#
@@ -36,10 +41,6 @@ https://quiet-springs-84556.herokuapp.com/swagger-ui.html#
 ### Executando programa
 
 * Execute java -jar target/api-rest-0.0.1-SNAPSHOT.jar
-
-### Credencias de teste
-* Username: john123
-* Password: novasenha
 
 ### Teste
 
