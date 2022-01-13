@@ -36,7 +36,7 @@ public class ProdutoResource {
 		return produtoService.save(produto);
 	}
 	
-	@ApiOperation(value="Retorna uma lista de Produtos")
+	@ApiOperation(value="Retorna uma lista de produtos")
 	@GetMapping
 	public List<Produto> findAll(){
 		return produtoService.findAll();
