@@ -9,17 +9,19 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.math.BigDecimal;
-import java.util.List;
 
 @Service
 public class ProdutoServiceImpl implements ProdutoService {
+
 
     @Autowired
     private ProdutoRepository produtoRepository;
 
 
+
     @Override
     public Produto save(Produto produto) {
+        produto.setStatus(true);
         return produtoRepository.save(produto);
     }
 
@@ -35,25 +37,28 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     @Override
     public Produto findById(Long id) {
-        return produtoRepository
-                .findById(id)
+        return produtoRepository.findById(id)
                 .orElseThrow(EntityNotFoundException::new);
     }
 
     @Override
     public void deleteById(Long id) {
+        Produto produto = produtoRepository.findById(id).get();
+        produto.setStatus(false);
         produtoRepository.deleteById(id);
     }
 
     @Override
     public Produto update(Long id, Produto produto) {
-        produto.setId(id);
+        produtoRepository.findById(id).get();
+        produto.setStatus(true);
         return produtoRepository.save(produto);
     }
 
     public ExampleMatcher exampleMatcher() {
         return ExampleMatcher
                 .matching()
-                .withMatcher("nome", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase());
+                .withMatcher("nome", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase())
+                .withIgnoreNullValues();
     }
 }
