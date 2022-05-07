@@ -20,6 +20,7 @@ Projeto de API com Spring Boot com
 ### Documentação
 
 https://quiet-springs-84556.herokuapp.com/swagger-ui.html#
+http://localhost:8082/#/wallboard
 
 ### Dependências
 
