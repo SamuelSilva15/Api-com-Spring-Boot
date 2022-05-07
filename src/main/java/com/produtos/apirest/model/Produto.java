@@ -71,7 +71,7 @@ public class Produto implements Serializable {
 	public Boolean isStatus() {
 		return status;
 	}
-++
+
 	public void setStatus(Boolean status) {
 		this.status = status;
 	}

@@ -19,7 +19,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/auth")
-
+@Profile("prod")
 public class AutenticacaoController {
 
     @Autowired

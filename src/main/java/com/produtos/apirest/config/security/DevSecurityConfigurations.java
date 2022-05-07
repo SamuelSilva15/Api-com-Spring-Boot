@@ -19,8 +19,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-@Profile("prod")
-public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
+@Profile("dev")
+public class DevSecurityConfigurations extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private AutenticacaoService autenticacaoService;
@@ -48,20 +48,14 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/api/produtos").permitAll()
-                .antMatchers(HttpMethod.GET, "/api/produtos/*").permitAll()
-                .antMatchers(HttpMethod.POST, "/auth").permitAll()
-                .antMatchers(HttpMethod.GET, "/actuator/**").permitAll()
-                .anyRequest().authenticated()
-                .and().csrf().disable()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and().addFilterBefore(new AutenticacaoViaTokenFilter(tokenService, usuarioRepository), UsernamePasswordAuthenticationFilter.class);
+                .antMatchers("/**").permitAll()
+                .and().csrf().disable();
     }
 
     //configurações de recursos estáticos(css, javascript, images)
     @Override
     public void configure(WebSecurity web) throws Exception {
-                web.ignoring()
+        web.ignoring()
                 .antMatchers("/**.html", "/v2/api-docs", "/webjars/**", "/configuration/**", "/swagger-resources/**", "/h2-console/**");
     }
 
