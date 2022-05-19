@@ -1,5 +1,6 @@
 package com.api.produtos.service.impl;
 
+import com.api.produtos.exception.ProdutoNotFoundException;
 import com.api.produtos.service.ProdutoService;
 import com.api.produtos.model.Produto;
 import com.api.produtos.repository.ProdutoRepository;
@@ -18,7 +19,7 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     @Override
     public Produto save(Produto produto) {
-        produto.setStatus(true);
+        produto.setAtivo(true);
         return produtoRepository.save(produto);
     }
 
@@ -35,20 +36,19 @@ public class ProdutoServiceImpl implements ProdutoService {
     @Override
     public Produto findById(Long id) {
         return produtoRepository.findById(id)
-                .orElseThrow(EntityNotFoundException::new);
+                .orElseThrow(() -> new ProdutoNotFoundException(id));
     }
-
     @Override
     public void deleteById(Long id) {
-        Produto produto = produtoRepository.findById(id).get();
-        produto.setStatus(false);
-        produtoRepository.deleteById(id);
+        Produto produto = findById(id);
+        produto.setAtivo(false);
+        produtoRepository.save(produto);
     }
 
     @Override
     public Produto update(Long id, Produto produto) {
-        produtoRepository.findById(id).get();
-        produto.setStatus(true);
+        findById(id);
+        produto.setAtivo(true);
         return produtoRepository.save(produto);
     }
 

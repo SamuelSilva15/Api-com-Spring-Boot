@@ -30,7 +30,7 @@ public class Produto implements Serializable {
 	@NotNull
 	private BigDecimal valor;
 
-	private Boolean status;
+	private Boolean ativo;
 
 	public Long getId() {
 		return id;
@@ -64,12 +64,11 @@ public class Produto implements Serializable {
 		this.valor = valor;
 	}
 
-
-	public Boolean isStatus() {
-		return status;
+	public Boolean getAtivo() {
+		return ativo;
 	}
 
-	public void setStatus(Boolean status) {
-		this.status = status;
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
 	}
 }
