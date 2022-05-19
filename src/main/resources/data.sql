@@ -1,5 +1,5 @@
 insert into USUARIO (nome, email, senha) values ('Aluno', 'aluno@email.com', '$2a$10$zAsN1/.1GQIKZPOosGVUkebvMIP67sB.n.eH8zUWEy5S7VYHpptJu');
-insert into USUARIO (nome, email, senha) values ('Moderador', 'moderador@email.com', '$2a$10$zAsN1/.1GQIKZPOosGVUkebvMIP67sB.n.eH8zUWEy5S7VYHpptJu');
+insert into USUARIO (nome, email, senha) values ('Moderador', 'moderador@email.com', '$2a$10$u524H8e6WxzXKNzuCkzHpexsB/bLJNmH4XWmPY0pyVHnvNwgJJpYK');
 
 insert into PERFIL (id, nome) values (1, 'ROLE_ALUNO');
 insert into PERFIL (id, nome) values (2, 'ROLE_MODERADOR');

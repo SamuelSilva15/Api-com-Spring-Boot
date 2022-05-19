@@ -1,4 +1,4 @@
-package com.api.produtos.config.security;
+package com.api.config.security;
 
 import com.api.produtos.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;

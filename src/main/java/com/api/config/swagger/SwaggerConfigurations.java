@@ -1,4 +1,4 @@
-package com.api.produtos.config.swagger;
+package com.api.config.swagger;
 
 import com.api.produtos.model.Usuario;
 import springfox.documentation.builders.ParameterBuilder;
