@@ -31,7 +31,6 @@ public class DevSecurityConfigurations extends WebSecurityConfigurerAdapter {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    //permite a injeção de depedências
     @Bean
     @Override
     protected AuthenticationManager authenticationManager() throws Exception {
