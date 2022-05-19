@@ -12,6 +12,7 @@ import java.util.Date;
 
 @Service
 public class TokenService {
+
     @Value("${produto.jwt.expiration}")
     private String expiration;
 
