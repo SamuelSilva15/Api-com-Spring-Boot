@@ -158,3 +158,5 @@ buildNumber.properties
 
 # Fim de https://www.toptal.com/developers/gitignore/api/java,maven,intellij
 /target/
+
+.idead/

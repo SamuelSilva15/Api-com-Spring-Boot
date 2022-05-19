@@ -14,11 +14,8 @@ import com.produtos.apirest.model.Produto;
 import io.swagger.annotations.Api;
 
 @CrossOrigin(origins = "*")
-
 @RestController
-
 @RequestMapping(value="/api/produtos")
-
 @Api(value="API REST Produtos")
 public class ProdutoController {
 
