@@ -1,6 +1,6 @@
 package com.api.produtos.controller;
 
-import com.api.produtos.config.security.TokenService;
+import com.api.config.security.TokenService;
 import com.api.produtos.controller.dto.TokenDto;
 import com.api.produtos.controller.form.LoginForm;
 import org.springframework.beans.factory.annotation.Autowired;
