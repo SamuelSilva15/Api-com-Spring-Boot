@@ -6,9 +6,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
-public class ApiRestApplication {
+public class ProdutoApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ApiRestApplication.class, args);
+		SpringApplication.run(ProdutoApplication.class, args);
 	}
 }
