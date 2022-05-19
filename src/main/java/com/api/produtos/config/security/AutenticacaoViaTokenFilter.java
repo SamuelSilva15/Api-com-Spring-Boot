@@ -14,7 +14,6 @@ import java.io.IOException;
 
 public class AutenticacaoViaTokenFilter extends OncePerRequestFilter {
 
-
     private TokenService tokenService;
     private UsuarioRepository repository;
 

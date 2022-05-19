@@ -21,7 +21,6 @@ public class Produto implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-
 	@NotNull
 	private String nome;
 
@@ -31,9 +30,7 @@ public class Produto implements Serializable {
 	@NotNull
 	private BigDecimal valor;
 
-
 	private Boolean status;
-
 
 	public Long getId() {
 		return id;
