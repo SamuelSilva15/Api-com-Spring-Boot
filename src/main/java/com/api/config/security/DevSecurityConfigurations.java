@@ -16,7 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-@Profile("dev")
+@Profile(value={"dev", "test"})
 public class DevSecurityConfigurations extends WebSecurityConfigurerAdapter {
 
     @Autowired

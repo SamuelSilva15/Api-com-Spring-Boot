@@ -7,10 +7,12 @@ import java.math.BigDecimal;
 
 public interface ProdutoService {
 
+     Page<Produto> findAll(int page, int size, String nome, int quantidade);
+
      Produto save(Produto produto);
-     Page<Produto> findAll(int page, int size, String nome, BigDecimal quantidade);
+
      Produto findById(Long id);
-     void deleteById(Long id);
+     Produto deleteById(Long id);
      Produto update(Long id, Produto produto);
 
 

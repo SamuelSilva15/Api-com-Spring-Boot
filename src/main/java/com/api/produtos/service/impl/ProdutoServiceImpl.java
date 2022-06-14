@@ -8,23 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
-import java.math.BigDecimal;
-
 @Service
 public class ProdutoServiceImpl implements ProdutoService {
 
-    @Autowired
     private ProdutoRepository produtoRepository;
 
-    @Override
-    public Produto save(Produto produto) {
-        produto.setAtivo(true);
-        return produtoRepository.save(produto);
+    @Autowired
+    public ProdutoServiceImpl(ProdutoRepository produtoRepository){
+        this.produtoRepository = produtoRepository;
     }
 
     @Override
-    public Page<Produto> findAll(int page, int size, String nome, BigDecimal quantidade) {
+    public Page<Produto> findAll(int page, int size, String nome, int quantidade) {
         Produto produto = new Produto();
         produto.setNome(nome);
         produto.setQuantidade(quantidade);
@@ -34,22 +29,32 @@ public class ProdutoServiceImpl implements ProdutoService {
     }
 
     @Override
+    public Produto save(Produto produto) {
+        produto.setAtivo(true);
+        return produtoRepository.save(produto);
+    }
+
+    @Override
     public Produto findById(Long id) {
         return produtoRepository.findById(id)
                 .orElseThrow(() -> new ProdutoNotFoundException(id));
     }
     @Override
-    public void deleteById(Long id) {
+    public Produto deleteById(Long id) {
         Produto produto = findById(id);
         produto.setAtivo(false);
         produtoRepository.save(produto);
+        return produto;
     }
 
     @Override
     public Produto update(Long id, Produto produto) {
-        findById(id);
-        produto.setAtivo(true);
-        return produtoRepository.save(produto);
+        Produto atual = findById(id);
+        atual.setNome(produto.getNome());
+        atual.setQuantidade(produto.getQuantidade());
+        atual.setValor(produto.getValor());
+        atual.setAtivo(true);
+        return produtoRepository.save(atual);
     }
 
     public ExampleMatcher exampleMatcher() {
