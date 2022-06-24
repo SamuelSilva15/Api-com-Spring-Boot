@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 
 import javax.validation.Valid;
 
+import com.api.produtos.exception.QuantidadeInsuficienteException;
+import com.api.produtos.model.Venda;
 import com.api.produtos.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -31,7 +33,11 @@ public class ProdutoController {
 	public Page<Produto> findAll(@RequestParam(required = false, defaultValue = "0") int page,
 								 @RequestParam(required = false, defaultValue = Integer.MAX_VALUE + "")	int size,
 								 @RequestParam(required = false) String nome,
+<<<<<<< Updated upstream
 								 @RequestParam(required = false) BigDecimal quantidade){
+=======
+								 @RequestParam(required = false) Integer quantidade){
+>>>>>>> Stashed changes
 		return produtoService.findAll(page, size, nome, quantidade);
 	}
 
@@ -49,4 +55,17 @@ public class ProdutoController {
 	public Produto update(@PathVariable Long id, @RequestBody @Valid Produto produto) {
 		return produtoService.update(id, produto);
 	}
+
+	/**
+	 * {
+	 *     produto: 1,
+	 *     quantidade: 1
+	 * }
+	 * @param venda
+	 * @return
+	 */
+	/*@PostMapping("/vendas")
+	public Venda venda(@RequestBody @Valid Venda venda) throws QuantidadeInsuficienteException {
+		return produtoService.venda(venda);
+	}*/
 }

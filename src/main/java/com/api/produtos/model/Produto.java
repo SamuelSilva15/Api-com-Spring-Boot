@@ -1,5 +1,7 @@
 package com.api.produtos.model;
 
+import com.api.produtos.exception.QuantidadeInsuficienteException;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -8,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 
@@ -25,10 +28,16 @@ public class Produto implements Serializable {
 	private String nome;
 
 	@NotNull
+<<<<<<< Updated upstream
 	private BigDecimal quantidade;
+=======
+	@Min(0)
+	private Integer quantidade;
+>>>>>>> Stashed changes
 
 	@NotNull
-	private BigDecimal valor;
+	private Integer valor;
+
 
 	private Boolean ativo;
 
@@ -48,19 +57,27 @@ public class Produto implements Serializable {
 		this.nome = nome;
 	}
 
+<<<<<<< Updated upstream
 	public BigDecimal getQuantidade() {
 		return quantidade;
 	}
 
 	public void setQuantidade(BigDecimal quantidade) {
+=======
+	public Integer getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(Integer quantidade) {
+>>>>>>> Stashed changes
 		this.quantidade = quantidade;
 	}
 
-	public BigDecimal getValor() {
+	public Integer getValor() {
 		return valor;
 	}
 
-	public void setValor(BigDecimal valor) {
+	public void setValor(Integer valor) {
 		this.valor = valor;
 	}
 
@@ -70,5 +87,17 @@ public class Produto implements Serializable {
 
 	public void setAtivo(Boolean ativo) {
 		this.ativo = ativo;
+	}
+
+	public void diminuirQuantidade(int quantidade) throws QuantidadeInsuficienteException {
+		if(this.quantidade < quantidade){
+			throw new QuantidadeInsuficienteException(this.quantidade);
+		}
+
+		this.quantidade -= quantidade;
+
+		if(this.quantidade == 0) {
+			this.ativo = false;
+		}
 	}
 }
