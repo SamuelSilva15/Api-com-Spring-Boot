@@ -1,6 +1,8 @@
 package com.api.produtos.service.impl;
 
 import com.api.produtos.exception.ProdutoNotFoundException;
+import com.api.produtos.exception.QuantidadeInsuficienteException;
+import com.api.produtos.model.Venda;
 import com.api.produtos.service.ProdutoService;
 import com.api.produtos.model.Produto;
 import com.api.produtos.repository.ProdutoRepository;
@@ -8,8 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
+<<<<<<< Updated upstream
 import javax.persistence.EntityNotFoundException;
 import java.math.BigDecimal;
+=======
+import javax.persistence.NoResultException;
+import java.math.BigDecimal;
+import java.util.List;
+>>>>>>> Stashed changes
 
 @Service
 public class ProdutoServiceImpl implements ProdutoService {
@@ -24,7 +32,11 @@ public class ProdutoServiceImpl implements ProdutoService {
     }
 
     @Override
+<<<<<<< Updated upstream
     public Page<Produto> findAll(int page, int size, String nome, BigDecimal quantidade) {
+=======
+    public Page<Produto> findAll(int page, int size, String nome, Integer quantidade) {
+>>>>>>> Stashed changes
         Produto produto = new Produto();
         produto.setNome(nome);
         produto.setQuantidade(quantidade);
@@ -52,10 +64,11 @@ public class ProdutoServiceImpl implements ProdutoService {
         return produtoRepository.save(produto);
     }
 
+
     public ExampleMatcher exampleMatcher() {
         return ExampleMatcher
                 .matching()
-                .withMatcher("nome", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase())
-                .withIgnoreNullValues();
+                .withIgnoreNullValues()
+                .withMatcher("nome", ExampleMatcher.GenericPropertyMatchers.contains().ignoreCase());
     }
 }
