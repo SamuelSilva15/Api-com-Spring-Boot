@@ -15,24 +15,18 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
-
 public class ProdutoServiceImplTest {
-
     @Captor
     private ArgumentCaptor<Produto> captor = ArgumentCaptor.forClass(Produto.class);
-
     private ProdutoRepository produtoRepository;
     private ProdutoService produtoService;
-
     @Before
     public void setup(){
         produtoRepository = Mockito.mock(ProdutoRepository.class);
         produtoService = new ProdutoServiceImpl(produtoRepository);
     }
-
     @Test
     public void deveBuscarTodosProdutos(){
         //DADO

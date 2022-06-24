@@ -1,19 +1,14 @@
 package com.api.produtos.controller;
 
-import java.math.BigDecimal;
-
-import javax.validation.Valid;
-
-import com.api.produtos.exception.QuantidadeInsuficienteException;
-import com.api.produtos.model.Venda;
+import com.api.produtos.model.Produto;
 import com.api.produtos.service.ProdutoService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
-import com.api.produtos.model.Produto;
-
-import io.swagger.annotations.Api;
+import javax.validation.Valid;
+import java.math.BigDecimal;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -33,11 +28,7 @@ public class ProdutoController {
 	public Page<Produto> findAll(@RequestParam(required = false, defaultValue = "0") int page,
 								 @RequestParam(required = false, defaultValue = Integer.MAX_VALUE + "")	int size,
 								 @RequestParam(required = false) String nome,
-<<<<<<< Updated upstream
-								 @RequestParam(required = false) BigDecimal quantidade){
-=======
 								 @RequestParam(required = false) Integer quantidade){
->>>>>>> Stashed changes
 		return produtoService.findAll(page, size, nome, quantidade);
 	}
 
@@ -55,17 +46,4 @@ public class ProdutoController {
 	public Produto update(@PathVariable Long id, @RequestBody @Valid Produto produto) {
 		return produtoService.update(id, produto);
 	}
-
-	/**
-	 * {
-	 *     produto: 1,
-	 *     quantidade: 1
-	 * }
-	 * @param venda
-	 * @return
-	 */
-	/*@PostMapping("/vendas")
-	public Venda venda(@RequestBody @Valid Venda venda) throws QuantidadeInsuficienteException {
-		return produtoService.venda(venda);
-	}*/
 }
