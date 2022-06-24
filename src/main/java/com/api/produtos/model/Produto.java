@@ -13,7 +13,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-
 @Entity
 @Table(name="TB_PRODUTO")
 public class Produto implements Serializable {
@@ -26,14 +25,8 @@ public class Produto implements Serializable {
 
 	@NotNull
 	private String nome;
-
-	@NotNull
-<<<<<<< Updated upstream
-	private BigDecimal quantidade;
-=======
 	@Min(0)
 	private Integer quantidade;
->>>>>>> Stashed changes
 
 	@NotNull
 	private Integer valor;
@@ -57,19 +50,11 @@ public class Produto implements Serializable {
 		this.nome = nome;
 	}
 
-<<<<<<< Updated upstream
-	public BigDecimal getQuantidade() {
-		return quantidade;
-	}
-
-	public void setQuantidade(BigDecimal quantidade) {
-=======
 	public Integer getQuantidade() {
 		return quantidade;
 	}
 
 	public void setQuantidade(Integer quantidade) {
->>>>>>> Stashed changes
 		this.quantidade = quantidade;
 	}
 
