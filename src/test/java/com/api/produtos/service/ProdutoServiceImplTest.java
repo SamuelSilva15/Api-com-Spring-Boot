@@ -14,19 +14,25 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
-
 import java.util.List;
 import java.util.Optional;
+
+
 public class ProdutoServiceImplTest {
+
     @Captor
     private ArgumentCaptor<Produto> captor = ArgumentCaptor.forClass(Produto.class);
+
     private ProdutoRepository produtoRepository;
     private ProdutoService produtoService;
+
+
     @Before
     public void setup(){
         produtoRepository = Mockito.mock(ProdutoRepository.class);
         produtoService = new ProdutoServiceImpl(produtoRepository);
     }
+
     @Test
     public void deveBuscarTodosProdutos(){
         //DADO
@@ -118,6 +124,7 @@ public class ProdutoServiceImplTest {
         produto.setNome("Iphone");
         produto.setQuantidade(12);
         produto.setValor(10);
+
         produto.setAtivo(Boolean.FALSE);
         Mockito.when(produtoRepository.findById(1L)).thenReturn(Optional.of(produto));
 

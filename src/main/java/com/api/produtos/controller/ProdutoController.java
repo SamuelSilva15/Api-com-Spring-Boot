@@ -28,7 +28,8 @@ public class ProdutoController {
 	public Page<Produto> findAll(@RequestParam(required = false, defaultValue = "0") int page,
 								 @RequestParam(required = false, defaultValue = Integer.MAX_VALUE + "")	int size,
 								 @RequestParam(required = false) String nome,
-								 @RequestParam(required = false) Integer quantidade){
+								 @RequestParam(required = false) int quantidade){
+
 		return produtoService.findAll(page, size, nome, quantidade);
 	}
 
