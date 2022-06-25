@@ -53,7 +53,7 @@ public class ProdutoServiceImpl implements ProdutoService {
         produto.setAtivo(true);
         return produtoRepository.save(produto);
     }
-    
+
     public ExampleMatcher exampleMatcher() {
         return ExampleMatcher
                 .matching()
