@@ -8,7 +8,7 @@ import org.springframework.data.domain.Page;
 public interface ProdutoService {
 
 
-     Page<Produto> findAll(int page, int size, String nome, int quantidade);
+     Page<Produto> findAll(int page, int size, String nome, Integer quantidade);
      Produto save(Produto produto);
 
      Produto findById(Long id);

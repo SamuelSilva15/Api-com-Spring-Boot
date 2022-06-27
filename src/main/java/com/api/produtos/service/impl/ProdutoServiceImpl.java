@@ -19,7 +19,7 @@ public class ProdutoServiceImpl implements ProdutoService {
     }
 
     @Override
-    public Page<Produto> findAll(int page, int size, String nome, int quantidade) {
+    public Page<Produto> findAll(int page, int size, String nome, Integer quantidade) {
         Produto produto = new Produto();
         produto.setNome(nome);
         produto.setQuantidade(quantidade);
@@ -44,8 +44,7 @@ public class ProdutoServiceImpl implements ProdutoService {
     public Produto deleteById(Long id) {
         Produto produto = findById(id);
         produto.setAtivo(false);
-        produtoRepository.save(produto);
-        return produto;
+        return produtoRepository.save(produto);
     }
 
     @Override
