@@ -36,10 +36,11 @@ public class ProdutoServiceImplTest {
     @Test
     public void deveBuscarTodosProdutos(){
         //DADO
-        produtoSamsung();
+        Produto samsung = produtoSamsung();
+        Produto iphone = produtoIphone();
 
         //QUANDO
-        List<Produto> produtos = List.of(produtoSamsung(), produtoIphone());
+        List<Produto> produtos = List.of(samsung, iphone);
         Page page = new PageImpl(produtos);
 
         Mockito.when(produtoRepository.findAll(Mockito.any(Example.class), Mockito.any(PageRequest.class))).thenReturn(page);
@@ -49,23 +50,23 @@ public class ProdutoServiceImplTest {
         //ENTÃO
         Assert.assertNotNull(produtosPage);
         Assert.assertEquals(2, produtosPage.getTotalElements());
-        Assert.assertNotNull(produtoSamsung());
-        Assert.assertEquals(Long.valueOf(1), produtoSamsung().getId());
-        Assert.assertEquals("Samsung", produtoSamsung().getNome());
-        Assert.assertEquals(20, produtoSamsung().getQuantidade().intValue());
+        Assert.assertNotNull(samsung);
+        Assert.assertEquals(Long.valueOf(1), samsung.getId());
+        Assert.assertEquals("Samsung", samsung.getNome());
+        Assert.assertEquals(20, samsung.getQuantidade().intValue());
 
         Assert.assertNotNull(produtoIphone());
-        Assert.assertEquals(Long.valueOf(2), produtoIphone().getId());
-        Assert.assertEquals("Iphone", produtoIphone().getNome());
-        Assert.assertEquals(10, produtoIphone().getQuantidade().intValue());
+        Assert.assertEquals(Long.valueOf(2), iphone.getId());
+        Assert.assertEquals("Iphone", iphone.getNome());
+        Assert.assertEquals(10, iphone.getQuantidade().intValue());
     }
 
     @Test
     public void deveBuscarProdutoPorId() {
         //DADO
-        produtoIphone();
+        Produto iphone = produtoIphone();
 
-        Mockito.when(produtoRepository.findById(2L)).thenReturn(Optional.of(produtoIphone()));
+        Mockito.when(produtoRepository.findById(2L)).thenReturn(Optional.of(iphone));
 
         //QUANDO
         Produto produto = produtoService.findById(2L);
@@ -89,24 +90,24 @@ public class ProdutoServiceImplTest {
     @Test
     public void deveSalvarProduto(){
         //DADO
-        produtoIphone();
+        Produto iphone = produtoIphone();
 
-        Mockito.when(produtoRepository.save(produtoIphone())).thenReturn(produtoIphone());
+        Mockito.when(produtoRepository.save(iphone)).thenReturn(iphone);
 
         //QUANDO
-        Produto produto = produtoService.save(produtoIphone());
+        Produto produto = produtoService.save(iphone);
 
         //ENTÃO
         Assert.assertNotNull(produtoIphone());
-        Assert.assertEquals(Long.valueOf(2), produtoIphone().getId());
+        Assert.assertEquals(Long.valueOf(2), iphone.getId());
     }
 
     @Test
     public void deveAtualizarPorId(){
         //DADO
-        produtoIphone();
+        Produto samsung = produtoSamsung();
 
-        Mockito.when(produtoRepository.findById(2L)).thenReturn(Optional.of(produtoIphone()));
+        Mockito.when(produtoRepository.findById(2L)).thenReturn(Optional.of(samsung));
 
 
         //QUANDO
@@ -129,9 +130,9 @@ public class ProdutoServiceImplTest {
     @Test
     public void deveExcluirPorId(){
         //DADO
-        produtoIphone();
+        Produto iphone = produtoIphone();
 
-        Mockito.when(produtoRepository.findById(2L)).thenReturn(Optional.of(produtoIphone()));
+        Mockito.when(produtoRepository.findById(2L)).thenReturn(Optional.of(iphone));
 
         //QUANDO
         produtoService.deleteById(2L);
