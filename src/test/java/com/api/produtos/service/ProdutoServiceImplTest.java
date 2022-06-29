@@ -39,43 +39,43 @@ public class ProdutoServiceImplTest {
         Produto samsung = produtoSamsung();
         Produto iphone = produtoIphone();
 
-        //QUANDO
-        List<Produto> produtos = List.of(samsung, iphone);
-        Page page = new PageImpl(produtos);
-
+        Page page = new PageImpl(List.of(samsung, iphone));
         Mockito.when(produtoRepository.findAll(Mockito.any(Example.class), Mockito.any(PageRequest.class))).thenReturn(page);
 
-        Page produtosPage = produtoService.findAll(0, 10, "TESTE", 1);
+        //QUANDO
+        Page<Produto> produtosPage = produtoService.findAll(0, 10, "TESTE", 1);
 
         //ENTÃO
         Assert.assertNotNull(produtosPage);
         Assert.assertEquals(2, produtosPage.getTotalElements());
-        Assert.assertNotNull(samsung);
-        Assert.assertEquals(Long.valueOf(1), samsung.getId());
-        Assert.assertEquals("Samsung", samsung.getNome());
-        Assert.assertEquals(20, samsung.getQuantidade().intValue());
 
-        Assert.assertNotNull(produtoIphone());
-        Assert.assertEquals(Long.valueOf(2), iphone.getId());
-        Assert.assertEquals("Iphone", iphone.getNome());
-        Assert.assertEquals(10, iphone.getQuantidade().intValue());
+        Assert.assertNotNull(produtosPage.getContent().get(0));
+        Assert.assertEquals(Long.valueOf(1), produtosPage.getContent().get(0).getId());
+        Assert.assertEquals("Samsung", produtosPage.getContent().get(0).getNome());
+        Assert.assertEquals(20, produtosPage.getContent().get(0).getQuantidade().intValue());
+
+        Assert.assertNotNull(produtosPage.getContent().get(1));
+        Assert.assertEquals(Long.valueOf(2), produtosPage.getContent().get(1).getId());
+        Assert.assertEquals("Iphone", produtosPage.getContent().get(1).getNome());
+        Assert.assertEquals(10, produtosPage.getContent().get(1).getQuantidade().intValue());
     }
 
     @Test
     public void deveBuscarProdutoPorId() {
         //DADO
-        Produto iphone = produtoIphone();
+        Produto samsung = produtoSamsung();
 
-        Mockito.when(produtoRepository.findById(2L)).thenReturn(Optional.of(iphone));
+        Mockito.when(produtoRepository.findById(samsung.getId())).thenReturn(Optional.of(samsung));
 
         //QUANDO
-        Produto produto = produtoService.findById(2L);
+        Produto produto = produtoService.findById(1L);
 
         //ENTÃO
-        Assert.assertNotNull(produto);
-        Assert.assertEquals(Long.valueOf(2), produtoIphone().getId());
-        Assert.assertEquals("Iphone", produtoIphone().getNome());
-        Assert.assertEquals(10, produtoIphone().getQuantidade().intValue());
+        Assert.assertNotNull(samsung);
+        Assert.assertEquals(Long.valueOf(1), samsung.getId());
+        Assert.assertEquals("Samsung", samsung.getNome());
+        Assert.assertEquals(20, samsung.getQuantidade().intValue());
+        Assert.assertEquals(120, samsung.getValor().intValue());
     }
 
     @Test(expected = ProdutoNotFoundException.class)
