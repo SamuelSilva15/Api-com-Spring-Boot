@@ -31,7 +31,6 @@ public class Produto implements Serializable {
 	@NotNull
 	private Integer valor;
 
-
 	private Boolean ativo;
 
 	public Long getId() {
@@ -49,6 +48,7 @@ public class Produto implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
 
 	public Integer getQuantidade() {
 		return quantidade;

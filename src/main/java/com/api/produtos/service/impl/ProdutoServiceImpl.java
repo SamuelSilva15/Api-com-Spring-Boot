@@ -19,12 +19,6 @@ public class ProdutoServiceImpl implements ProdutoService {
     }
 
     @Override
-    public Produto save(Produto produto) {
-        produto.setAtivo(true);
-        return produtoRepository.save(produto);
-    }
-
-    @Override
     public Page<Produto> findAll(int page, int size, String nome, Integer quantidade) {
         Produto produto = new Produto();
         produto.setNome(nome);
@@ -35,25 +29,34 @@ public class ProdutoServiceImpl implements ProdutoService {
     }
 
     @Override
+    public Produto save(Produto produto) {
+        produto.setAtivo(true);
+        return produtoRepository.save(produto);
+    }
+
+    @Override
     public Produto findById(Long id) {
         return produtoRepository.findById(id)
                 .orElseThrow(() -> new ProdutoNotFoundException(id));
     }
 
     @Override
-    public void deleteById(Long id) {
+    public Produto deleteById(Long id) {
         Produto produto = findById(id);
         produto.setAtivo(false);
-        produtoRepository.save(produto);
+        return produtoRepository.save(produto);
     }
 
     @Override
     public Produto update(Long id, Produto produto) {
-        findById(id);
-        produto.setAtivo(true);
-        return produtoRepository.save(produto);
+        Produto atual = findById(id);
+        atual.setNome(produto.getNome());
+        atual.setQuantidade(produto.getQuantidade());
+        atual.setValor(produto.getValor());
+        atual.setAtivo(true);
+        return produtoRepository.save(atual);
     }
-    
+
     public ExampleMatcher exampleMatcher() {
         return ExampleMatcher
                 .matching()
