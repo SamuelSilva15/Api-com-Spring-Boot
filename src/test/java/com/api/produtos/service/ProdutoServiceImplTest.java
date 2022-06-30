@@ -71,11 +71,11 @@ public class ProdutoServiceImplTest {
         Produto produto = produtoService.findById(1L);
 
         //ENTÃO
-        Assert.assertNotNull(samsung);
-        Assert.assertEquals(Long.valueOf(1), samsung.getId());
-        Assert.assertEquals("Samsung", samsung.getNome());
-        Assert.assertEquals(20, samsung.getQuantidade().intValue());
-        Assert.assertEquals(120, samsung.getValor().intValue());
+        Assert.assertNotNull(produto);
+        Assert.assertEquals(Long.valueOf(1), produto.getId());
+        Assert.assertEquals("Samsung", produto.getNome());
+        Assert.assertEquals(20, produto.getQuantidade().intValue());
+        Assert.assertEquals(120, produto.getValor().intValue());
     }
 
     @Test(expected = ProdutoNotFoundException.class)
@@ -99,7 +99,7 @@ public class ProdutoServiceImplTest {
 
         //ENTÃO
         Assert.assertNotNull(produtoIphone());
-        Assert.assertEquals(Long.valueOf(2), iphone.getId());
+        Assert.assertEquals(Long.valueOf(2), produto.getId());
     }
 
     @Test
