@@ -14,7 +14,7 @@ Projeto de API com Spring Boot com
 
 ### Credências
 
-*moderador*
+*moderador:*
 * Username: moderador@email.com
 * Password: senha1234
 
